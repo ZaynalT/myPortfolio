@@ -312,7 +312,7 @@ onMounted(() => {
 }
 
 .skill-tag {
-  background: var(--primary-color);
+  background: var(--tag-bg);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 25px;
