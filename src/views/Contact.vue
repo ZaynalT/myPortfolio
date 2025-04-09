@@ -56,7 +56,7 @@ const form = ref({
 const socialLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/ZaynalT',
     icon: 'fab fa-github'
   },
   {
