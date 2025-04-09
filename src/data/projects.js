@@ -7,17 +7,17 @@ import figure8 from '@/assets/images/figure8.png'
 import techSeed from '@/assets/images/techSeed.png'  // Assuming you have an image for TechSeed
 
 export const projects = [
-    {
-      id: 1,
-      title: "TechSeed",
-      description: "At TechSeed, I focused on developing key skills, especially in React, while working on in-house IoT projects. However, in early 2024, my mother was diagnosed with cancer, and we sought treatment in Turkey. I supported her from May 2024 to January 2025, which led to a gap in my resume and a brief tenure at TechSeed.",
-      image: techSeed,
-      tags: ["React", "Node.js", "IoT"],
-      github: "",
-      demo: "",
-      period: "2024 February - 2024 May",
-      fullText: "The reason for this explanation is to explain the gap I have in my resume and the reason for my short time on TechSeed.\n\nDuring my time at TechSeed, I focused on honing the skills I knew would be essential for securing an assignment as quickly as possible. I began by working on in-house IoT projects available within the company, gaining hands-on experience. As I progressed, I shifted my focus to refining my expertise in React, recognizing its dominance in the market. My goal was to build a strong portfolio by creating and showcasing projects on GitHub.\n\nIn early 2024, I received devastating news—my mother had been diagnosed with cancer. Unfortunately, no viable treatment options were available for her in Sweden, and the proposed alternatives offered little hope. As a family, we made the difficult decision to seek medical care in Turkey, where she underwent extensive surgery and treatment. My brother and I traveled with her, staying from May 2024 to January 2025 to provide support during this critical period."
-    },
+    // {
+    //   id: 1,
+    //   title: "TechSeed",
+    //   description: "At TechSeed, I focused on developing key skills, especially in React, while working on in-house IoT projects. However, in early 2024, my mother was diagnosed with cancer, and we sought treatment in Turkey. I supported her from May 2024 to January 2025, which led to a gap in my resume and a brief tenure at TechSeed.",
+    //   image: techSeed,
+    //   tags: ["React", "Node.js", "IoT"],
+    //   github: "",
+    //   demo: "",
+    //   period: "2024 February - 2024 May",
+    //   fullText: "The reason for this explanation is to explain the gap I have in my resume and the reason for my short time on TechSeed.\n\nDuring my time at TechSeed, I focused on honing the skills I knew would be essential for securing an assignment as quickly as possible. I began by working on in-house IoT projects available within the company, gaining hands-on experience. As I progressed, I shifted my focus to refining my expertise in React, recognizing its dominance in the market. My goal was to build a strong portfolio by creating and showcasing projects on GitHub.\n\nIn early 2024, I received devastating news—my mother had been diagnosed with cancer. Unfortunately, no viable treatment options were available for her in Sweden, and the proposed alternatives offered little hope. As a family, we made the difficult decision to seek medical care in Turkey, where she underwent extensive surgery and treatment. My brother and I traveled with her, staying from May 2024 to January 2025 to provide support during this critical period."
+    // },
     {
       id: 2,
       title: "Call4Help Emergency Response",
