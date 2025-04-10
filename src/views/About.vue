@@ -55,14 +55,35 @@
           </div>
         </div>
       </section>
+
+      <section class="reviews-section">
+        <h2 class="section-title">What People Say</h2>
+        <div class="reviews-grid">
+          <div 
+            class="review-card" 
+            v-for="(review, index) in reviews" 
+            :key="review.id"
+            :class="{ 'visible': visibleReviews.includes(index) }"
+          >
+            <div class="review-content">
+              <div class="review-text">
+                <p class="review-quote">"{{ review.text }}"</p>
+                <div class="review-author">
+                  <h3 class="author-name">{{ review.name }}</h3>
+                  <p class="author-position">{{ review.position }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-
-
   </div>
 </template>
 
 <script setup>
 import { bio } from '../data/bio'
+import { reviews } from '../data/reviews'
 import { ref, onMounted } from 'vue'
 
 const skillCategories = {
@@ -169,6 +190,7 @@ const employments = [
 const visibleItems = ref([]);
 const visibleSkills = ref([]);
 const visibleEducation = ref([]);
+const visibleReviews = ref([]);
 
 onMounted(() => {
   // Employment items observer
@@ -216,6 +238,21 @@ onMounted(() => {
     rootMargin: '0px 0px -50px 0px'
   });
 
+  // Reviews observer
+  const reviewsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.dataset.index);
+        setTimeout(() => {
+          visibleReviews.value.push(index);
+        }, index * 200);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
   // Observe all items
   document.querySelectorAll('.employment-item').forEach((item, index) => {
     item.dataset.index = index;
@@ -230,6 +267,12 @@ onMounted(() => {
   document.querySelectorAll('.education-item').forEach((item, index) => {
     item.dataset.index = index;
     educationObserver.observe(item);
+  });
+
+  // Observe review items
+  document.querySelectorAll('.review-card').forEach((item, index) => {
+    item.dataset.index = index;
+    reviewsObserver.observe(item);
   });
 });
 </script>
@@ -286,17 +329,54 @@ onMounted(() => {
 .skill-category {
   background: var(--card-bg);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s ease-out;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateX(-50px);
+  position: relative;
+}
+
+.skill-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.dark .skill-category::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .skill-category.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 25px rgba(0, 0, 0, 0.15),
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .category-title {
@@ -355,17 +435,54 @@ onMounted(() => {
 .education-item {
   background: var(--card-bg);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s ease-out;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateX(-50px);
+  position: relative;
+}
+
+.education-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.dark .education-item::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .education-item.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+.education-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 25px rgba(0, 0, 0, 0.15),
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .degree-title {
@@ -399,17 +516,54 @@ onMounted(() => {
 .employment-item {
   background: var(--card-bg);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s ease-out;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateX(-50px);
+  position: relative;
+}
+
+.employment-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.dark .employment-item::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .employment-item.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+.employment-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 25px rgba(0, 0, 0, 0.15),
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .period {
@@ -421,6 +575,104 @@ onMounted(() => {
 .company {
   color: var(--text-color);
   font-size: 1.1rem;
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin-top: 3rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.review-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.dark .review-card::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.review-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 25px rgba(0, 0, 0, 0.15),
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.review-content {
+  position: relative;
+  z-index: 2;
+}
+
+.review-text {
+  text-align: center;
+}
+
+.review-quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.review-author {
+  margin-top: 1rem;
+}
+
+.author-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.author-position {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
 }
 
 /* Responsive Design */
@@ -487,6 +739,18 @@ onMounted(() => {
     font-size: 0.85rem;
     border-radius: 20px;
   }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card {
+    padding: 1.5rem;
+  }
+
+  .review-quote {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -514,6 +778,10 @@ onMounted(() => {
 
   .institution,
   .period {
+    font-size: 0.9rem;
+  }
+
+  .review-quote {
     font-size: 0.9rem;
   }
 }

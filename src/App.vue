@@ -19,10 +19,17 @@
 </template>
 
 <script setup>
+import { RouterView } from 'vue-router'
 import { useThemeStore } from './stores/theme'
+import { onMounted } from 'vue'
 
 const themeStore = useThemeStore()
 const { isDark, toggleTheme } = themeStore
+
+onMounted(() => {
+  themeStore.initializeTheme()
+  document.documentElement.classList.toggle('dark', themeStore.isDark)
+})
 </script>
 
 <style>

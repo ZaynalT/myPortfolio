@@ -1,31 +1,29 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useThemeStore = defineStore('theme', () => {
-  const isDark = ref(true)  // Set default to true for dark mode
-
-  // Check for saved theme preference
-  if (localStorage.getItem('theme') === 'light') {
-    isDark.value = false
-    document.documentElement.classList.remove('dark')
-  } else {
-    document.documentElement.classList.add('dark')
-  }
-
-  // Watch for theme changes
-  watch(isDark, (newValue) => {
-    if (newValue) {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  })
+  const isDark = ref(false) // Changed default to false for light mode
+  const theme = computed(() => isDark.value ? 'dark' : 'light')
 
   function toggleTheme() {
     isDark.value = !isDark.value
+    localStorage.setItem('theme', theme.value)
   }
 
-  return { isDark, toggleTheme }
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      isDark.value = savedTheme === 'dark'
+    } else {
+      isDark.value = false // Set default to light mode
+      localStorage.setItem('theme', 'light')
+    }
+  }
+
+  return {
+    isDark,
+    theme,
+    toggleTheme,
+    initializeTheme
+  }
 }) 

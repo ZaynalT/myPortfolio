@@ -1,11 +1,8 @@
 <template>
-  <div class="project-detail">
+  <div class="project-detail" ref="projectDetailContainer">
     <div class="project-header">
-      <h1>{{ project?.title }}</h1>
+      <h1 class="project-title">{{ project?.title }}</h1>
       <div class="project-meta">
-        <div class="project-tags">
-          <span v-for="tag in project?.tags" :key="tag" class="project-tag">{{ tag }}</span>
-        </div>
         <div class="project-links">
           <a :href="project?.github" target="_blank" class="btn secondary" v-if="project?.github?.length > 1">GitHub</a>
           <a :href="project?.demo" target="_blank" class="btn primary" v-if="project?.demo?.length > 1">Live Demo</a>
@@ -20,7 +17,17 @@
       
       <div class="project-description">
         <h2>About the Project</h2>
+        <div class="project-period-section">
+          <p>{{ project?.period }}</p>
+        </div>
         <p>{{ project?.fullText }}</p>
+      </div>
+
+      <div class="project-tags-section">
+        <h2>Technologies Used</h2>
+        <div class="project-tags">
+          <span v-for="tag in project?.tags" :key="tag" class="project-tag">{{ tag }}</span>
+        </div>
       </div>
 
       <div class="back-link">
@@ -39,6 +46,7 @@ import { projects } from '../data/projects'
 
 const route = useRoute()
 const project = ref(null)
+const projectDetailContainer = ref(null)
 
 onMounted(() => {
   const title = route.params.title.replace(/-/g, ' ')
@@ -48,6 +56,11 @@ onMounted(() => {
     const projectTitle = p.title.toLowerCase().replace(/[^a-z0-9]/g, '')
     return urlTitle === projectTitle
   })
+  
+  // Scroll to top when entering project detail
+  if (projectDetailContainer.value) {
+    projectDetailContainer.value.scrollTop = 0
+  }
 })
 </script>
 
@@ -56,6 +69,8 @@ onMounted(() => {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .back-button {
@@ -87,7 +102,7 @@ onMounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0;
 }
 
 .project-tag {
@@ -271,5 +286,48 @@ onMounted(() => {
     flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+.project-meta {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-period {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8;
+  display: inline-block;
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.project-tags-section {
+  margin: 2rem 0;
+}
+
+.project-tags-section h2 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-period-section {
+  margin: 1.5rem 0;
+}
+
+.project-period-section p {
+  color: var(--text-color);
+  font-size: 1rem;
+  opacity: 0.8;
 }
 </style> 

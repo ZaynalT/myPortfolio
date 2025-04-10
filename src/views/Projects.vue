@@ -1,5 +1,5 @@
 <template>
-  <div class="projects">
+  <div class="projects" ref="projectsContainer">
     <h1>My life's work</h1>
     <div class="projects-grid">
       <router-link 
@@ -24,7 +24,32 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRoute } from 'vue-router'
 import { projects } from '../data/projects'
+
+const route = useRoute()
+const projectsContainer = ref(null)
+
+// Store scroll position before leaving
+onBeforeUnmount(() => {
+  if (projectsContainer.value) {
+    localStorage.setItem('projectsScrollPosition', projectsContainer.value.scrollTop)
+  }
+})
+
+// Restore scroll position when mounted
+onMounted(() => {
+  if (projectsContainer.value) {
+    const savedPosition = localStorage.getItem('projectsScrollPosition')
+    if (savedPosition) {
+      // Use setTimeout to ensure the DOM is fully rendered
+      setTimeout(() => {
+        projectsContainer.value.scrollTop = parseInt(savedPosition)
+      }, 0)
+    }
+  }
+})
 </script>
 
 <style scoped>
@@ -32,6 +57,8 @@ import { projects } from '../data/projects'
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 h1 {
@@ -49,44 +76,86 @@ h1 {
 
 .project-card {
   background: var(--card-bg);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   color: inherit;
+  position: relative;
+  transform: translateY(0);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.dark .project-card::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.3;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 25px rgba(0, 0, 0, 0.15),
+    0 10px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .project-image-container {
   width: 100%;
   height: 200px;
   overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .project-content {
   padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+  background: var(--card-bg);
 }
 
 .project-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-color);
+  position: relative;
+  font-weight: 600;
 }
 
 .project-description {
@@ -94,6 +163,8 @@ h1 {
   line-height: 1.6;
   color: var(--text-color);
   margin-bottom: 1rem;
+  position: relative;
+  opacity: 0.9;
 }
 
 .project-tags {
@@ -101,6 +172,8 @@ h1 {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .project-tag {
@@ -109,16 +182,17 @@ h1 {
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   display: inline-block;
   position: relative;
   overflow: hidden;
+  font-weight: 500;
 }
 
 .project-tag:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
 }
 
 .project-tag::after {
