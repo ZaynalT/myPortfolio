@@ -101,32 +101,32 @@ export const projects = [
       title: "Bayyinah Mosque App",
       description: "Developed a mobile app to improve mosque-member communication with donations, questions, and event access. Focused on intuitive UX for elderly users.",
       image: "",
-      tags: ["Swift", "Django", "Python", "Rest API", "JSON", "Cocoapods"],
-      github: "#",
-      demo: "#",
-      period: "2016-2016",
-      fullText: "Bayyinah, a leading organization in the United States dedicated to teaching Arabic globally, recently built a new mosque in Dallas and required a mobile application to serve as a communication and information bridge between the mosque and its members.\n\nTimocin was responsible for both the design and development of the application, with a strong emphasis on UX/UI to ensure accessibility for all users, particularly elderly members with limited technical experience.\n\nThe goal was to create an intuitive and user-friendly interface that would allow seamless interaction with the mosque. The backend was developed in Python using the Django framework, which facilitated the REST API implementation and ensured smooth functionality.\n\nThe project was well received, enabling mosque members to ask questions directly through the app and donate securely and effortlessly. The successful implementation strengthened engagement within the community while modernizing communication channels."
+      tags: ["iOS", "Objective-C", "User Experience", "Communication"],
+      github: "",
+      demo: "",
+      period: "2015-2016",
+      fullText: "The Bayyinah Mosque App was developed to enhance communication between the mosque and its members, with a particular focus on elderly users who were less tech-savvy. The app featured several key functionalities:\n\n- Donation system with secure payment processing\n- Question and answer section for religious inquiries\n- Event calendar and registration system\n- Prayer time notifications\n- Community announcements\n\nNote: Due to the passage of time and organizational changes, I no longer have access to the original resources and images for this project. Additionally, the app has been removed from the App Store following the completion of its service period."
     },
     {
       id: 10,
       title: "Magic Scissors Booking App",
       description: "iOS application that solved double bookings and reduced admin work in a local hair salon with a seamless booking interface.",
       image: "",
-      tags: ["Swift", "Python", "Django", "JSON", "Cocoapods", "Rest-API", "API Design"],
-      github: "#",
-      demo: "#",
+      tags: ["iOS", "Objective-C", "Booking System", "Local Business"],
+      github: "",
+      demo: "",
       period: "2015-2015",
-      fullText: "Magic Scissors, a hair salon in Gothenburg, faced challenges with an outdated and inefficient booking system, leading to double bookings and unnecessary administrative work for the staff.\n\nHaving been a long-time customer, Timocin identified these issues and proposed a modernized solution to streamline the booking process. He developed an iOS application that allowed customers to view available time slots and book appointments seamlessly.\n\nThe backend, built in Python, managed bookings by updating a JSON file containing real-time reservation data. The implementation resulted in a significant reduction in double bookings, leading to higher customer satisfaction and improved operational efficiency.\n\nCustomers could now schedule appointments effortlessly without needing to contact the salon, while employees could focus on their work instead of spending time manually managing reservations. The application received highly positive feedback, contributing to a smoother and more professional booking experience."
+      fullText: "The Magic Scissors Booking App was developed to address the specific needs of a local hair salon struggling with double bookings and administrative overhead. The app featured:\n\n- Real-time booking system\n- Staff availability tracking\n- Customer history and preferences\n- Automated reminders\n- Service duration management\n\nNote: As this was an early project in my career, I no longer have access to the original resources and images. The app has been removed from the App Store as the salon has since closed its business."
     },
     {
       id: 11,
       title: "Livescore for Gothenburg Lower Leagues",
       description: "Live sports tracking app tailored for Gothenburg's lower league football. Featured real-time updates using web crawlers and user inputs.",
       image: "",
-      tags: ["Objective-C", "Python", "Flask", "Rest-API", "JSON", "iOS Development"],
-      github: "#",
-      demo: "#",
+      tags: ["iOS", "Objective-C", "Sports", "Real-time Updates"],
+      github: "",
+      demo: "",
       period: "2015-2015",
-      fullText: "Livescore is a real-time sports service that provides live updates on scores, goal scorers, match times, and red/yellow cards. For the first time in Gothenburg, a Livescore service of this scale was introduced specifically for lower division leagues.\n\nRecognizing the need for an improved and tailored solution, Timocin took the initiative to develop his own Livescore system dedicated to lower division football leagues. The application utilized a web crawler to retrieve daily match information, ensuring up-to-date and accurate reporting.\n\nUsers could login and update match details, enhancing the platform's interactivity and engagement. The project was a resounding success, gaining significant traction among football players across Gothenburg.\n\nThe application received high praise on social media, with screenshots widely shared, and even gained recognition on a prominent local football blog. To develop this system, Timocin also expanded his technical expertise by learning Objective-C, further strengthening his skills in iOS development."
+      fullText: "Livescore is a real-time sports service that provides live updates on scores, goal scorers, match times, and red/yellow cards. For the first time in Gothenburg, a Livescore service of this scale was introduced specifically for lower division leagues.\n\nRecognizing the need for an improved and tailored solution, I developed my own Livescore system dedicated to lower division football leagues. The application utilized a web crawler to retrieve daily match information, ensuring up-to-date and accurate reporting.\n\nUsers could login and update match details, enhancing the platform's interactivity and engagement. The project was a resounding success, gaining significant traction among football players across Gothenburg.\n\nThe application received high praise on social media, with screenshots widely shared, and even gained recognition on a prominent local football blog. To develop this system, I expanded my technical expertise by learning Objective-C, further strengthening my skills in iOS development.\n\nNote: This being one of my earliest projects, I no longer have access to the original resources and images. The app has been removed from the App Store."
     }
 ];

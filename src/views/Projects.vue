@@ -8,8 +8,8 @@
         :to="'/projects/' + project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
         class="project-card"
       >
-        <div class="project-image-container" v-if="project.image">
-          <img :src="project.image" :alt="project.title" class="project-image">
+        <div class="project-image-container">
+          <img v-if="project.image" :src="project.image" :alt="project.title" class="project-image">
         </div>
         <div class="project-content">
           <h3>{{ project.title }}</h3>
@@ -89,6 +89,9 @@ h1 {
   color: inherit;
   position: relative;
   transform: translateY(0);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px; /* Set minimum height for consistency */
 }
 
 .project-card::before {
@@ -131,6 +134,7 @@ h1 {
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid var(--border-color);
+  background: var(--hover-bg); /* Add background color for cards without images */
 }
 
 .project-image {
@@ -149,6 +153,9 @@ h1 {
   position: relative;
   z-index: 2;
   background: var(--card-bg);
+  flex-grow: 1; /* Allow content to grow and fill remaining space */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-title {
@@ -166,13 +173,14 @@ h1 {
   margin-bottom: 1rem;
   position: relative;
   opacity: 0.9;
+  flex-grow: 1; /* Allow description to grow and push tags to bottom */
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: auto; /* Push tags to bottom */
   position: relative;
   z-index: 2;
 }
