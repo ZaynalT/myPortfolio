@@ -8,6 +8,11 @@
           to be part of your visions.
         </p>
         
+        <div class="email-contact">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:timocin.zaynal@gmail.com" class="email-link">timocin.zaynal@gmail.com</a>
+        </div>
+        
         <div class="social-links">
           <a v-for="link in socialLinks" :key="link.name" :href="link.url" target="_blank" class="social-link">
             <i :class="link.icon"></i>
@@ -106,6 +111,39 @@ h1 {
   line-height: 1.6;
   color: var(--text-color);
   margin-bottom: 2rem;
+}
+
+.email-contact {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.email-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.email-contact i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.email-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.email-link:hover {
+  color: var(--primary-color);
 }
 
 .social-links {

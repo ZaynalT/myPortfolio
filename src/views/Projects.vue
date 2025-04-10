@@ -57,7 +57,8 @@ onMounted(() => {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  min-height: calc(100vh - 64px); /* Subtract header height */
+  padding-bottom: 4rem; /* Add some bottom padding */
   overflow-y: auto;
 }
 
