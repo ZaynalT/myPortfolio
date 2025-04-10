@@ -21,10 +21,15 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import { useThemeStore } from './stores/theme'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 
 const themeStore = useThemeStore()
 const { isDark, toggleTheme } = themeStore
+
+// Watch for theme changes and update document class
+watch(() => themeStore.isDark, (newValue) => {
+  document.documentElement.classList.toggle('dark', newValue)
+})
 
 onMounted(() => {
   themeStore.initializeTheme()
@@ -41,6 +46,7 @@ onMounted(() => {
   --border-color: #e2e8f0;
   --hover-bg: #f8fafc;
   --tag-bg: #42b983;  /* Green color for tags in light mode */
+  --primary-color: #42b983;  /* Primary color for buttons and accents */
 }
 
 .dark {
@@ -51,6 +57,7 @@ onMounted(() => {
   --border-color: #404040;
   --hover-bg: #2d2d2d;
   --tag-bg: var(--primary-color);  /* Keep original color in dark mode */
+  --primary-color: #42b983;  /* Keep primary color consistent in dark mode */
 }
 
 #app {
