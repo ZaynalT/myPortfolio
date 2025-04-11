@@ -3,9 +3,16 @@
     <div class="about-content">
       <div class="about-text">
         <h1 class="main-title">About Me</h1>
-        <p class="bio">
-          {{ bio.fullText }}
-        </p>
+        <p class="subtitle">{{ bio.subtitle }}</p>
+        <p class="description">{{ bio.description }}</p>
+        
+        <button v-if="!showFullBio" @click="showFullBio = true" class="read-more">
+          Read More
+        </button>
+        
+        <div v-if="showFullBio" class="full-bio">
+          <p>{{ bio.fullText }}</p>
+        </div>
       </div>
 
       <section class="employments-section">
@@ -85,6 +92,8 @@
 import { bio } from '../data/bio'
 import { reviews } from '../data/reviews'
 import { ref, onMounted } from 'vue'
+import Tag from '../components/Tag.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 
 const skillCategories = {
   'Frontend': [
@@ -191,6 +200,7 @@ const visibleItems = ref([]);
 const visibleSkills = ref([]);
 const visibleEducation = ref([]);
 const visibleReviews = ref([]);
+const showFullBio = ref(false)
 
 onMounted(() => {
   // Employment items observer
@@ -303,9 +313,53 @@ onMounted(() => {
   display: inline-block;
 }
 
-.bio {
+.main-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.description {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.8;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.read-more:hover {
+  opacity: 0.9;
+}
+
+.full-bio {
+  margin-top: 1.5rem;
+}
+
+.full-bio p {
+  font-size: 1.1rem;
+  line-height: 1.8;
   color: var(--text-color);
   white-space: pre-line;
 }
@@ -708,7 +762,7 @@ onMounted(() => {
     font-size: 1.4rem;
   }
 
-  .bio {
+  .subtitle, .description, .full-bio p {
     font-size: 1rem;
   }
 

@@ -2,7 +2,7 @@
   <div class="home">
     <section class="hero">
       <h1>Timocin Zaynal</h1>
-      <p class="role">Front-End Developer</p>
+      <p class="role">Full-Stack Developer</p>
       <p class="introduction">
         Specializing in creating modern, responsive web applications with Vue.js and React. 
         Focused on delivering exceptional user experiences through clean code and intuitive interfaces.

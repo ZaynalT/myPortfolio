@@ -26,7 +26,7 @@
       <div class="project-tags-section">
         <h2>Technologies Used</h2>
         <div class="project-tags">
-          <span v-for="tag in project?.tags" :key="tag" class="project-tag">{{ tag }}</span>
+          <Tag v-for="tag in project?.tags" :key="tag" :text="tag" type="project" />
         </div>
       </div>
 
@@ -43,6 +43,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { projects } from '../data/projects'
+import Tag from '../components/Tag.vue'
 
 const route = useRoute()
 const project = ref(null)
