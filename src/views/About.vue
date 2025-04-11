@@ -6,9 +6,14 @@
         <p class="subtitle">{{ bio.subtitle }}</p>
         <p class="description">{{ bio.description }}</p>
         
-        <button v-if="!showFullBio" @click="showFullBio = true" class="read-more">
+        <Button
+          v-if="!showFullBio"
+          variant="outline"
+          @click="showFullBio = true"
+          class="read-more"
+        >
           Read More
-        </button>
+        </Button>
         
         <div v-if="showFullBio" class="full-bio">
           <p>{{ bio.fullText }}</p>
@@ -94,6 +99,7 @@ import { reviews } from '../data/reviews'
 import { ref, onMounted } from 'vue'
 import Tag from '../components/Tag.vue'
 import SectionTitle from '../components/SectionTitle.vue'
+import Button from '../components/Button.vue'
 
 const skillCategories = {
   'Frontend': [
@@ -339,18 +345,7 @@ onMounted(() => {
 }
 
 .read-more {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: opacity 0.3s ease;
-}
-
-.read-more:hover {
-  opacity: 0.9;
+  margin-top: 1rem;
 }
 
 .full-bio {

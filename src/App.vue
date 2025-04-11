@@ -7,9 +7,12 @@
         <router-link to="/projects">Projects</router-link>
         <router-link to="/about">About</router-link>
         <router-link to="/contact">Contact</router-link>
-        <button class="theme-toggle" @click="toggleTheme">
-          <i :class="isDark ? 'fas fa-sun' : 'fas fa-moon'"></i>
-        </button>
+        <Button
+          variant="text"
+          :icon="isDark ? 'fas fa-sun' : 'fas fa-moon'"
+          @click="toggleTheme"
+          class="theme-toggle"
+        />
       </div>
     </nav>
     <main>
@@ -22,6 +25,7 @@
 import { RouterView } from 'vue-router'
 import { useThemeStore } from './stores/theme'
 import { onMounted, watch } from 'vue'
+import Button from './components/Button.vue'
 
 const themeStore = useThemeStore()
 const { isDark, toggleTheme } = themeStore
@@ -39,14 +43,20 @@ onMounted(() => {
 
 <style>
 :root {
-  --bg-color: #ffffff;
-  --text-color: #2c3e50;
-  --nav-bg: #ffffff;
-  --card-bg: #ffffff;
+  --primary-color: #4CAF50;
+  --primary-hover: #45a049;
+  --secondary-color: #f0f0f0;
+  --secondary-hover: #e0e0e0;
+  --text-color: #333;
+  --bg-color: #fff;
+  --card-bg: #fff;
+  --hover-bg: #f5f5f5;
+  --nav-bg: #fff;
+  --nav-text: #333;
+  --nav-hover: #4CAF50;
+  --transition-speed: 0.3s;
   --border-color: #e2e8f0;
-  --hover-bg: #f8fafc;
   --tag-bg: #42b983;  /* Green color for tags in light mode */
-  --primary-color: #42b983;  /* Primary color for buttons and accents */
 }
 
 .dark {
@@ -105,11 +115,6 @@ onMounted(() => {
 }
 
 .theme-toggle {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  cursor: pointer;
-  font-size: 1.2rem;
   padding: 0.5rem;
   border-radius: 50%;
   transition: background-color 0.3s ease;

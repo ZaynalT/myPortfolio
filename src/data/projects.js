@@ -17,7 +17,26 @@ export const projects = [
       github: "https://github.com/ZaynalT/myPortfolio",
       demo: "",
       period: "2025 February - Present",
-      fullText: "This portfolio website represents my journey as a front-end developer, built with Vue.js to showcase my skills and projects. The website features a modern, responsive design with a focus on user experience and clean code.\n\nKey features include a dark/light mode toggle with persistent user preferences, smooth animations and transitions, and a responsive layout that works seamlessly across all devices. The project demonstrates my ability to create intuitive user interfaces and implement modern web development practices.\n\nI utilized Vue Router for navigation, Pinia for state management, and localStorage for persisting user preferences. The design emphasizes readability and accessibility while maintaining a professional aesthetic. The website serves as both a portfolio and a testament to my front-end development capabilities."
+      fullText: `This portfolio website represents my journey as a front-end developer, built with Vue.js to showcase my skills and projects. The website features a modern, responsive design with a focus on user experience and clean code.
+
+Key features include:
+• Dark/light mode toggle with persistent user preferences
+• Smooth animations and transitions
+• Responsive layout that works seamlessly across all devices
+• Reusable components for consistent UI elements
+• Project showcase with detailed views
+• Tag-based project filtering
+
+Technical Implementation:
+The project was built using Vue.js 3 with Vite for optimal performance. I implemented a component-based architecture using reusable components:
+• Tag component for consistent tag styling
+• Button component with multiple variants (primary, secondary, outline, text)
+• ProjectCard component for project displays
+• Navigation components for responsive menus
+
+The codebase is organized into modular components and centralized data files for better maintainability. The design emphasizes readability and accessibility while maintaining a professional aesthetic.
+
+You can view the source code by clicking the "GitHub" button at the top of this page.`
     },
     {
       id: 2,

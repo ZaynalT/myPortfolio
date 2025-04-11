@@ -21,28 +21,54 @@
         </div>
       </div>
 
-      <form class="contact-form" @submit.prevent="handleSubmit">
+      <form @submit.prevent="handleSubmit" class="contact-form">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" v-model="form.name" required>
+          <input
+            type="text"
+            id="name"
+            v-model="form.name"
+            required
+            class="form-input"
+          />
         </div>
-        
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="form.email" required>
+          <input
+            type="email"
+            id="email"
+            v-model="form.email"
+            required
+            class="form-input"
+          />
         </div>
-        
         <div class="form-group">
           <label for="subject">Subject</label>
-          <input type="text" id="subject" v-model="form.subject" required>
+          <input
+            type="text"
+            id="subject"
+            v-model="form.subject"
+            required
+            class="form-input"
+          />
         </div>
-        
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" v-model="form.message" required></textarea>
+          <textarea
+            id="message"
+            v-model="form.message"
+            required
+            class="form-textarea"
+          ></textarea>
         </div>
-        
-        <button type="submit" class="submit-btn">Send Message</button>
+        <Button
+          type="submit"
+          variant="primary"
+          class="submit-btn"
+          :full-width="true"
+        >
+          Send Message
+        </Button>
       </form>
     </div>
   </div>
@@ -50,6 +76,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import Button from '../components/Button.vue'
 
 const form = ref({
   name: '',
@@ -72,7 +99,7 @@ const socialLinks = [
 ]
 
 const handleSubmit = () => {
-  // Handle form submission here
+  // Handle form submission
   console.log('Form submitted:', form.value)
   // Reset form
   form.value = {
@@ -186,7 +213,7 @@ label {
   font-weight: 500;
 }
 
-input, textarea {
+.form-input, textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--border-color);
@@ -196,25 +223,13 @@ input, textarea {
   color: var(--text-color);
 }
 
-textarea {
+.form-textarea {
   min-height: 150px;
   resize: vertical;
 }
 
 .submit-btn {
-  background-color: #42b983;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-  background-color: #3aa876;
+  margin-top: 1rem;
 }
 
 @media (max-width: 768px) {
