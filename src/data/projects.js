@@ -14,7 +14,7 @@ export const projects = [
       description: "A modern, responsive portfolio website showcasing my professional journey, projects, and skills with a focus on clean design and user experience.",
       image: myPortfolio,
       tags: ["Vue.js", "Vue Router", "Pinia", "CSS", "Responsive Design", "Dark Mode", "LocalStorage"],
-      github: "",
+      github: "https://github.com/ZaynalT/myPortfolio",
       demo: "",
       period: "2025 February - Present",
       fullText: "This portfolio website represents my journey as a front-end developer, built with Vue.js to showcase my skills and projects. The website features a modern, responsive design with a focus on user experience and clean code.\n\nKey features include a dark/light mode toggle with persistent user preferences, smooth animations and transitions, and a responsive layout that works seamlessly across all devices. The project demonstrates my ability to create intuitive user interfaces and implement modern web development practices.\n\nI utilized Vue Router for navigation, Pinia for state management, and localStorage for persisting user preferences. The design emphasizes readability and accessibility while maintaining a professional aesthetic. The website serves as both a portfolio and a testament to my front-end development capabilities."
