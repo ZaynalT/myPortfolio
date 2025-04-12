@@ -2,7 +2,7 @@
   <div class="contact">
     <div class="contact-content">
       <div class="contact-info">
-        <h1>Get in Touch</h1>
+        <h1 class="main-title">Get in Touch</h1>
         <p class="description">
           I'm always open to discussing new projects, creative ideas, or opportunities
           to be part of your visions.
@@ -131,6 +131,23 @@ const handleSubmit = () => {
 h1 {
   color: var(--text-color);
   margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 3px;
+  background: var(--tag-bg);
+  border-radius: 2px;
+}
+
+.contact-info h1.main-title::after {
+  display: none;
 }
 
 .description {
@@ -159,7 +176,7 @@ h1 {
 
 .email-contact i {
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--tag-bg);
 }
 
 .email-link {
@@ -170,7 +187,7 @@ h1 {
 }
 
 .email-link:hover {
-  color: var(--primary-color);
+  color: var(--tag-bg);
 }
 
 .social-links {
@@ -191,7 +208,8 @@ h1 {
 }
 
 .social-link:hover {
-  background-color: var(--hover-bg);
+  background-color: var(--tag-bg);
+  color: white;
 }
 
 .contact-form {

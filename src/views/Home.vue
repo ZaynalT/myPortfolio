@@ -43,7 +43,7 @@ h1 {
 
 .role {
   font-size: 1.8rem;
-  color: var(--primary-color);
+  color: var(--tag-bg);
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
@@ -53,7 +53,6 @@ h1 {
   line-height: 1.6;
   color: var(--text-color);
   margin-bottom: 2.5rem;
-  opacity: 0.9;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -74,7 +73,7 @@ h1 {
 }
 
 .primary {
-  background-color: var(--primary-color);
+  background-color: var(--tag-bg);
   color: white;
 }
 

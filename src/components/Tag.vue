@@ -20,7 +20,6 @@ defineProps({
 
 <style scoped>
 .tag {
-  background: var(--primary-color);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 25px;
@@ -30,6 +29,16 @@ defineProps({
   display: inline-block;
   position: relative;
   overflow: hidden;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-tag {
+  background-color: var(--tag-bg) !important;
+}
+
+.project-tag {
+  background-color: var(--project-tag-bg) !important;
 }
 
 .tag:hover {

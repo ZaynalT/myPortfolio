@@ -58,12 +58,13 @@ defineEmits(['click'])
 }
 
 .button--primary {
-  background-color: var(--primary-color);
+  background-color: var(--tag-bg);
   color: white;
 }
 
 .button--primary:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--tag-bg);
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 
@@ -79,12 +80,12 @@ defineEmits(['click'])
 
 .button--outline {
   background-color: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 2px solid var(--tag-bg);
+  color: var(--tag-bg);
 }
 
 .button--outline:hover {
-  background-color: var(--primary-color);
+  background-color: var(--tag-bg);
   color: white;
   transform: translateY(-2px);
 }
@@ -96,7 +97,7 @@ defineEmits(['click'])
 }
 
 .button--text:hover {
-  color: var(--primary-color);
+  color: var(--tag-bg);
 }
 
 .button__icon {

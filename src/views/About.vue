@@ -46,7 +46,7 @@
           >
             <h3 class="category-title">{{ category }}</h3>
             <div class="skills-list">
-              <span v-for="skill in skills" :key="skill" class="skill-tag">{{ skill }}</span>
+              <Tag v-for="skill in skills" :key="skill" :text="skill" type="skill" />
             </div>
           </div>
         </div>
@@ -313,7 +313,7 @@ onMounted(() => {
 
 .main-title {
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   color: var(--text-color);
   position: relative;
   display: inline-block;
@@ -326,20 +326,19 @@ onMounted(() => {
   bottom: -8px;
   width: 100%;
   height: 3px;
-  background: var(--primary-color);
+  background: var(--tag-bg);
   border-radius: 2px;
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
+  margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--text-color);
   margin-bottom: 1.5rem;
 }
@@ -361,10 +360,8 @@ onMounted(() => {
 
 .section-title {
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
   color: var(--text-color);
-  position: relative;
-  display: inline-block;
+  margin-bottom: 1.5rem;
 }
 
 /* Skills Section */
@@ -429,9 +426,9 @@ onMounted(() => {
 }
 
 .category-title {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
   color: var(--text-color);
+  margin-bottom: 1rem;
 }
 
 .skills-list {
@@ -536,18 +533,11 @@ onMounted(() => {
 
 .degree-title {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-color);
-}
-
-.institution {
-  font-size: 1rem;
   color: var(--text-color);
   margin-bottom: 0.5rem;
 }
 
-.period {
-  font-size: 0.9rem;
+.institution, .period {
   color: var(--text-color);
 }
 
@@ -615,15 +605,8 @@ onMounted(() => {
     0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-.period {
+.period, .company {
   color: var(--text-color);
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.company {
-  color: var(--text-color);
-  font-size: 1.1rem;
 }
 
 /* Reviews Section */
@@ -701,10 +684,8 @@ onMounted(() => {
 
 .review-quote {
   font-size: 1.1rem;
-  line-height: 1.6;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
-  font-style: italic;
+  margin-bottom: 1rem;
 }
 
 .review-author {
@@ -712,14 +693,12 @@ onMounted(() => {
 }
 
 .author-name {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.1rem;
   color: var(--text-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .author-position {
-  font-size: 0.9rem;
   color: var(--text-color);
   opacity: 0.8;
 }
@@ -750,11 +729,11 @@ onMounted(() => {
   }
 
   .main-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .section-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .subtitle, .description, .full-bio p {

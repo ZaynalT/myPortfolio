@@ -1,18 +1,30 @@
 <template>
   <div class="projects">
     <h1 class="main-title">Projects</h1>
-    <div class="projects-grid">
-      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
+    <div v-if="store.loading" class="loading">
+      <LoadingDots />
+    </div>
+    <div v-else-if="store.error" class="error">{{ store.error }}</div>
+    <div v-else class="projects-grid">
+      <ProjectCard v-for="project in store.projects" :key="project.id" :project="project" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 import ProjectCard from '../components/ProjectCard.vue'
-import { projects } from '../data/projects'
+import LoadingDots from '../components/LoadingDots.vue'
+import { useProjectsStore } from '../stores/projects'
+import { useRouter } from 'vue-router'
 
-const projectsList = ref(projects)
+const router = useRouter()
+
+const store = useProjectsStore()
+
+onMounted(() => {
+  store.fetchProjects()
+})
 </script>
 
 <style scoped>
@@ -30,21 +42,24 @@ const projectsList = ref(projects)
   display: inline-block;
 }
 
-.main-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
-  height: 3px;
-  background: var(--primary-color);
-  border-radius: 2px;
-}
-
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #ff4444;
 }
 
 @media (max-width: 1024px) {

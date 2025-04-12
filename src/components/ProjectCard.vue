@@ -1,5 +1,9 @@
 <template>
-  <router-link :to="'/projects/' + project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')" class="project-card">
+  <router-link 
+    :to="`/projects/${project.id}/${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}`" 
+    class="project-card"
+    @click="handleClick"
+  >
     <div class="project-image-container">
       <img v-if="project.image" :src="project.image" :alt="project.title" class="project-image">
       <div v-else class="project-image-placeholder">
@@ -10,7 +14,7 @@
       <h3 class="project-title">{{ project.title }}</h3>
       <p class="project-description">{{ project.description }}</p>
       <div class="project-tags">
-        <Tag v-for="tag in project.tags" :key="tag" :text="tag" type="project" />
+        <Tag v-for="tag in project.tags" :key="tag" :text="tag" type="skill" />
       </div>
     </div>
   </router-link>
@@ -19,12 +23,16 @@
 <script setup>
 import Tag from './Tag.vue'
 
-defineProps({
+const props = defineProps({
   project: {
     type: Object,
     required: true
   }
 })
+
+const handleClick = () => {
+  // for debugging
+}
 </script>
 
 <style scoped>

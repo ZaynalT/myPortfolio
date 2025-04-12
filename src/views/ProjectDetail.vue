@@ -26,7 +26,7 @@
       <div class="project-tags-section">
         <h2>Technologies Used</h2>
         <div class="project-tags">
-          <Tag v-for="tag in project?.tags" :key="tag" :text="tag" type="project" />
+          <Tag v-for="tag in project?.tags" :key="tag" :text="tag" type="skill" />
         </div>
       </div>
 
@@ -40,27 +40,38 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { projects } from '../data/projects'
 import Tag from '../components/Tag.vue'
+import { useProjectsStore } from '../stores/projects'
 
 const route = useRoute()
+const store = useProjectsStore()
 const project = ref(null)
 const projectDetailContainer = ref(null)
 
+
 onMounted(() => {
-  const title = route.params.title.replace(/-/g, ' ')
-  project.value = projects.find(p => {
-    // Convert both titles to lowercase and remove special characters for comparison
-    const urlTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '')
-    const projectTitle = p.title.toLowerCase().replace(/[^a-z0-9]/g, '')
-    return urlTitle === projectTitle
-  })
+  // If projects are not loaded yet, fetch them
+  if (store.projects.length === 0) {
+    store.fetchProjects()
+  }
+  
+  // Get project by ID
+  const projectId = route.params.id
+  project.value = store.getProjectById(projectId)
   
   // Scroll to top when entering project detail
   if (projectDetailContainer.value) {
     projectDetailContainer.value.scrollTop = 0
+  }
+})
+
+// Watch for route changes
+watch(() => route.params, (newParams) => {
+  console.log('Route params changed:', newParams)
+  if (newParams.id) {
+    project.value = store.getProjectById(newParams.id)
   }
 })
 </script>
@@ -222,6 +233,7 @@ onMounted(() => {
 .secondary {
   background-color: var(--hover-bg);
   color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 
 /* Responsive Design */
