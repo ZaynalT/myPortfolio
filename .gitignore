@@ -71,4 +71,8 @@ yarn-error.log*
 .vite
 
 # TypeScript
-*.tsbuildinfo 
+*.tsbuildinfo
+
+# New environment files
+.env.local
+.env.*.local 
