@@ -12,17 +12,30 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
 import ProjectCard from '../components/ProjectCard.vue'
 import LoadingDots from '../components/LoadingDots.vue'
 import { useProjectsStore } from '../stores/projects'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
 const store = useProjectsStore()
+const projects = ref([])
+const selectedTag = ref('')
+const scrollPosition = ref(0)
 
+// Save scroll position before unmounting
+onBeforeUnmount(() => {
+  if (router.currentRoute.value.name === 'ProjectDetail') {
+    scrollPosition.value = window.scrollY
+  }
+})
+
+// Restore scroll position when mounted
 onMounted(() => {
+  if (scrollPosition.value > 0) {
+    window.scrollTo(0, scrollPosition.value)
+  }
   store.fetchProjects()
 })
 </script>
