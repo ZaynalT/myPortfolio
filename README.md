@@ -111,6 +111,11 @@ src/
 - Efficient data management
 - Scalable architecture
 
+## TODO
+- [ ] Enable Server-Side Rendering (SSR) support
+- [ ] Move bio data and reviews to firebase 
+- [ ] Implement comprehensive testing suite
+
 ## Contributing
 
 1. Fork the repository
