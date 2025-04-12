@@ -185,6 +185,8 @@ main {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: calc(100vh - 4rem); /* Account for navbar height */
+  box-sizing: border-box;
 }
 
 /* Dark mode transitions */

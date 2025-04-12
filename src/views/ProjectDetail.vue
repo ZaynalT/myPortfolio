@@ -1,5 +1,5 @@
 <template>
-  <div class="project-detail" ref="projectDetailContainer">
+  <div class="project-detail">
     <div class="project-header">
       <h1 class="project-title">{{ project?.title }}</h1>
       <div class="project-meta">
@@ -48,7 +48,6 @@ import { useProjectsStore } from '../stores/projects'
 const route = useRoute()
 const store = useProjectsStore()
 const project = ref(null)
-const projectDetailContainer = ref(null)
 
 const formatText = (text) => {
   if (!text) return ''
@@ -66,11 +65,6 @@ onMounted(() => {
   // Get project by ID
   const projectId = route.params.id
   project.value = store.getProjectById(projectId)
-  
-  // Scroll to top when entering project detail
-  if (projectDetailContainer.value) {
-    projectDetailContainer.value.scrollTop = 0
-  }
 })
 
 // Watch for route changes
@@ -84,11 +78,13 @@ watch(() => route.params, (newParams) => {
 
 <style scoped>
 .project-detail {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
-  overflow-y: auto;
+  padding: 2rem;
+  min-height: calc(100vh - 8rem); /* Account for navbar and main padding */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .back-button {
@@ -341,6 +337,37 @@ watch(() => route.params, (newParams) => {
 .project-tags-section h2 {
   color: var(--text-color);
   font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.project-image-container {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-description {
+  margin: 3rem 0 2rem 0;
+}
+
+.description-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  white-space: pre-line;
+}
+
+.description-text p {
   margin-bottom: 1rem;
 }
 </style> 
