@@ -20,7 +20,7 @@
         <div class="project-period-section">
           <p>{{ project?.period }}</p>
         </div>
-        <p>{{ project?.fullText }}</p>
+        <div class="description-text" v-html="formatText(project?.fullText)"></div>
       </div>
 
       <div class="project-tags-section">
@@ -50,6 +50,12 @@ const store = useProjectsStore()
 const project = ref(null)
 const projectDetailContainer = ref(null)
 
+const formatText = (text) => {
+  if (!text) return ''
+  return text
+    .replace(/\\n/g, '<br>')  // string literal \n
+    .replace(/\n/g, '<br>')   // actual newline character
+}
 
 onMounted(() => {
   // If projects are not loaded yet, fetch them
@@ -179,24 +185,7 @@ watch(() => route.params, (newParams) => {
 }
 
 .project-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text-color);
-  white-space: pre-line;
-}
-
-.project-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.project-image-container {
-  width: 100%;
-  max-height: 500px;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 3rem 0 2rem 0;
 }
 
 .project-description h2 {
@@ -316,12 +305,33 @@ watch(() => route.params, (newParams) => {
   display: inline-block;
 }
 
-.project-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
+.project-period-section {
+  margin: 1.5rem 0;
+}
+
+.project-period-section p {
   color: var(--text-color);
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.description-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  white-space: pre-line;
+}
+
+.description-text p {
+  margin-bottom: 1rem;
+}
+
+.project-image-container {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .project-tags-section {
@@ -332,15 +342,5 @@ watch(() => route.params, (newParams) => {
   color: var(--text-color);
   font-size: 1.5rem;
   margin-bottom: 1rem;
-}
-
-.project-period-section {
-  margin: 1.5rem 0;
-}
-
-.project-period-section p {
-  color: var(--text-color);
-  font-size: 1rem;
-  opacity: 0.8;
 }
 </style> 
