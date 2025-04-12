@@ -115,6 +115,7 @@ src/
 - [ ] Enable Server-Side Rendering (SSR) support
 - [ ] Move bio data and reviews to firebase 
 - [ ] Implement comprehensive testing suite
+- [ ] Implement internationalization (i18n) support
 
 ## Contributing
 
