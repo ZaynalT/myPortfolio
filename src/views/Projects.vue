@@ -20,8 +20,6 @@ import { useProjectsStore } from '../stores/projects'
 
 const router = useRouter()
 const store = useProjectsStore()
-const projects = ref([])
-const selectedTag = ref('')
 const scrollPosition = ref(0)
 
 // Save scroll position before unmounting

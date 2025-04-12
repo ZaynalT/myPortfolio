@@ -8,6 +8,7 @@ import bilia from '@/assets/images/bilia.png'
 import ellos from '@/assets/images/ellos.png'
 import scope360 from '@/assets/images/scope360.png'
 import figure8 from '@/assets/images/figure8.png'
+import techSeed from '@/assets/images/techSeed.png'
 
 const imageMap = {
   'myPortfolio.png': myPortfolio,
@@ -16,7 +17,8 @@ const imageMap = {
   'bilia.png': bilia,
   'ellos.png': ellos,
   'scope360.png': scope360,
-  'figure8.png': figure8
+  'figure8.png': figure8,
+  'techSeed.png': techSeed
 }
 
 export const useProjectsStore = defineStore('projects', () => {
